@@ -172,7 +172,8 @@ define([
                 that.keyboard_manager.enable();
             }
         });
-        this.code_mirror.on('keydown', $.proxy(this.handle_keyevent,this));
+        this.code_mirror.cell = this;
+        this.code_mirror.on('keydown', $.proxy(this.keyboard_manager.handle,this));
         $(this.code_mirror.getInputField()).attr("spellcheck", "false");
         inner_cell.append(input_area);
         input.append(prompt).append(inner_cell);

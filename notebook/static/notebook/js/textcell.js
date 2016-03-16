@@ -103,7 +103,8 @@ define([
                 that.keyboard_manager.enable();
             }
         });
-        this.code_mirror.on('keydown', $.proxy(this.handle_keyevent,this))
+        this.code_mirror.cell = this;
+        this.code_mirror.on('keydown', $.proxy(this.keyboard_manager.handle,this))
         // The tabindex=-1 makes this div focusable.
         var render_area = $('<div/>').addClass('text_cell_render rendered_html')
             .attr('tabindex','-1');

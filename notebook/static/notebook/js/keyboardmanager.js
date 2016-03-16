@@ -125,13 +125,22 @@ define([
         };
     };
 
+    KeyboardManager.prototype.handle = function ( editor, event) {
+        console.log(editor, event);
+        if (editor !== null){
+        return editor.cell.handle_keyevent(editor, event);
+        } else {
+        this.handle_keydown(event);
+        }
+    };
+
     KeyboardManager.prototype.bind_events = function () {
         var that = this;
         $(document).keydown(function (event) {
             if(event._ipkmIgnore===true||(event.originalEvent||{})._ipkmIgnore===true){
                 return false;
             }
-            return that.handle_keydown(event);
+            return that.handle(null, event);
         });
     };
 
