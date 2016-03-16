@@ -124,13 +124,21 @@ define([
             'q' : 'jupyter-notebook:close-pager',
         };
     };
-
+    
+    // Now all key event go throught this function and can be treated or
+    // discarded. 
     KeyboardManager.prototype.handle = function ( editor, event) {
         console.log(editor, event);
         if (editor !== null){
-        return editor.cell.handle_keyevent(editor, event);
+            return editor.cell.handle_keyevent(editor, event);
+            event.stopPropagation();
+            event.preventDefault();
+            return false;
         } else {
-        this.handle_keydown(event);
+            return this.handle_keydown(event);
+            event.stopPropagation();
+            event.preventDefault();
+            return true;
         }
     };
 
