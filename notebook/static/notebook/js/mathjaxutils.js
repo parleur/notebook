@@ -28,6 +28,9 @@ define([
                     styles: {'.MathJax_Display': {"margin": 0}},
                     linebreaks: { automatic: true }
                 },
+                TeX: {
+                    extensions: ["AMSmath.js", "AMSsymbols.js", "mhchem.js", "AMScd.js"]
+                }
             });
             MathJax.Hub.Configured();
         } else if (window.mathjax_url !== "") {
